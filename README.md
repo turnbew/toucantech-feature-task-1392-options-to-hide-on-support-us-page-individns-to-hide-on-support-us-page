@@ -1,4 +1,4 @@
-TASK DATE (MEDIUM - middle level): 12.04.2018 - FINISHED: 12.03.2017
+TASK DATE (MEDIUM - middle level - but changed many times): 12.04.2018 - FINISHED: 16.04.2017
 
 
 TASK SHORT DESCRIPTION: 1392_2nd_version [
@@ -47,6 +47,15 @@ ADDED NEW FILES
 CHANGES
  
 	IN FILES: 
+	
+		\network-site\addons\default\modules\network_settings\css\fundraising.css
+	
+			ADDED CODE: 
+			
+				.fields-separator-empty-div {
+					width: 100%; 
+					border: solid 2px #f5f5f5;
+				}
 	
 		\network-site\addons\default\themes\toucantechV2\css\supportus.css
 		
@@ -122,6 +131,9 @@ CHANGES
 				
 				........
 			
+				added separator fields: 
+				
+				<li><div class="fields-separator-empty-div"></div></li>
 			
 			
 			
@@ -129,6 +141,14 @@ CHANGES
 
 			ADDED CODE: new controll part 
 			
+				//Easy setting for fields-separator-empty-div fields width 
+				if ($('.toggle-display-on-support-us-page')[0]) {
+					var sectionDivWidth = $('.section').width() + 6;
+					var tabDivWidth = $('.tab-pane').width();
+					var separatorMargin = ((sectionDivWidth - tabDivWidth)/2) + 3;
+					$('.fields-separator-empty-div').css({'width' : sectionDivWidth + "px", 'margin-left' : "-" + separatorMargin + "px"});
+				} 
+	
 				//Easy control for buttons to toggle "Hearts", "Donate Buttons" and "Donors list"
 				if ($('.toggle-display-on-support-us-page')[0]) {
 					$('.toggle-display-on-support-us-page').live('click', function(event) 
@@ -181,23 +201,27 @@ CHANGES
 						if ( ! $this->input->is_ajax_request() ) exit;
 						
 						$this->lang->load('network_settings/support_us');
-						
-						$slug = trim($this->input->post('slug'), " \r\n");
-						
-						$value = ( (string)$this->input->post('value') == '1' ) ? '0' : '1';
-						
-						$result = $this->db->set('value', $value)->where('slug', $slug)->update('settings');
 
-						$switchEnabled = ($value == '1') ? lang('support_us:label:enabled') : lang('support_us:label:disabled');
-						$section = str_replace('_', ' ', str_replace('support_us_', '', $slug));
+						#catch the posted data and make some conversions
+						$value = ( (string)$this->input->post('value') == '1' ) ? '0' : '1';
+						$campaignId = $this->input->post('campaignId');
+						$slug = trim($this->input->post('slug'), " \r\n");
+						$plainField = str_replace('support_us_', '', $slug);
+						$field = 'display_' . $plainField;
+						$section = str_replace('_', ' ', $field);
 						
+						#update value in DB
+						$result = $this->db->set($field, $value)->where('id', $campaignId)->update('fundraising_campaigns');
+
+						#send back the result with messages
+						$switchEnabled = ($value == '1') ? lang('support_us:label:enabled') : lang('support_us:label:disabled');	
 						echo json_encode(array(
 							'result' => $result,
 							'value' => $value,
 							'btnLabel' => ($value == '1') ? lang('support_us:label:disable') : lang('support_us:label:enable'),
 							'btnStatus' => $switchEnabled,
 							'header' => sprintf(lang('support_us:title:update_result'), $section),
-							'msg' => sprintf(lang('support_us:msg:update_result'), ucfirst($section), $switchEnabled),
+							'msg' =>  sprintf(lang('support_us:text:toggling_parts_' . $plainField), $switchEnabled),
 						));
 					} //END function ajax_support_us_toggle
 		
