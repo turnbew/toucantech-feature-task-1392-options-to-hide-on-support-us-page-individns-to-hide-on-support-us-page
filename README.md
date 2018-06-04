@@ -1,54 +1,47 @@
+FOR PRIVACY AND CODE PROTECTING REASONS THIS IS A SIMPLIFIED VERSION OF CHANGES AND NEW FEATURES
+
 TASK DATE (MEDIUM - middle level - but changed many times): 12.04.2018 - FINISHED: 16.04.2017
 
+TASK LEVEL: HARD
 
-TASK SHORT DESCRIPTION: 1392_2nd_version [
-								Option to hide the heart, and/or donate button, and/or donors list 
-								from the campaign boxes on the Support Us page 
-								
-								this is the difference: individually
-							]
+TASK SHORT DESCRIPTION: 1392_2nd_version [Option to hide the heart, and/or donate button, and/or donors list from the campaign boxes on the Support Us page this is the difference: individually]
 
-							
 GITHUB REPOSITORY CODE: feature/task-1392-options-to-hide-on-support-us-page-individually
-
-
-ORIGINAL WORK: https://github.com/BusinessBecause/network-site/tree/feature/task-1392-options-to-hide-on-support-us-page-individually
-
 
 ADDED NEW FILES
 
-	\network-site\assets\_commons\common_fns.js
-	\network-site\addons\default\modules\network_settings\language\english\support_us_lang.php
-	\network-site\addons\default\modules\network_settings\views\fundraising\partials\support_us_buttons.php
-	\network-site\addons\default\modules\fundraising\views\partials\campaign_no_buttons.php
-	\network-site\addons\default\modules\fundraising\views\partials\campaign_no_donors.php
-	\network-site\addons\default\modules\fundraising\views\partials\campaign_no_hearts.php
-	\network-site\addons\default\modules\fundraising\views\partials\campaign_no_donors_no_buttons.php
-	\network-site\addons\default\modules\fundraising\views\partials\campaign_no_hearts_no_buttons.php
-	\network-site\addons\default\modules\fundraising\views\partials\campaign_no_hearts_no_donors.php
-	\network-site\addons\default\modules\fundraising\views\partials\campaign_no_hearts_no_donors_no_buttons.php
-	\network-site\addons\default\modules\fundraising\views\partials\campaign_no_values.php
-	\network-site\addons\default\modules\fundraising\views\partials\campaign_no_values_no_buttons.php
-	\network-site\addons\default\modules\fundraising\views\partials\campaign_no_values_no_donors.php
-	\network-site\addons\default\modules\fundraising\views\partials\campaign_no_values_no_hearts.php
-	\network-site\addons\default\modules\fundraising\views\partials\campaign_no_values_no_donors_no_buttons.php
-	\network-site\addons\default\modules\fundraising\views\partials\campaign_no_values_no_hearts_no_buttons.php
-	\network-site\addons\default\modules\fundraising\views\partials\campaign_no_values_no_hearts_no_donors.php
-	\network-site\addons\default\modules\fundraising\views\partials\campaign_no_values_no_hearts_no_donors_no_buttons.php	
-	\network-site\addons\default\modules\fundraising\views\partials\campaign_single.php
-	\network-site\addons\default\modules\fundraising\views\partials\campaign_single_no_buttons.php
-	\network-site\addons\default\modules\fundraising\views\partials\campaign_single_no_donors.php
-	\network-site\addons\default\modules\fundraising\views\partials\campaign_single_no_hearts.php
-	\network-site\addons\default\modules\fundraising\views\partials\campaign_single_no_donors_no_buttons.php
-	\network-site\addons\default\modules\fundraising\views\partials\campaign_single_no_hearts_no_buttons.php
-	\network-site\addons\default\modules\fundraising\views\partials\campaign_single_no_hearts_no_donors.php
-	\network-site\addons\default\modules\fundraising\views\partials\campaign_single_no_hearts_no_donors_no_buttons.php
+	common_fns.js
+	support_us_lang.php
+	support_us_buttons.php
+	campaign_no_buttons.php
+	campaign_no_donors.php
+	campaign_no_hearts.php
+	campaign_no_donors_no_buttons.php
+	campaign_no_hearts_no_buttons.php
+	campaign_no_hearts_no_donors.php
+	campaign_no_hearts_no_donors_no_buttons.php
+	campaign_no_values.php
+	campaign_no_values_no_buttons.php
+	campaign_no_values_no_donors.php
+	campaign_no_values_no_hearts.php
+	campaign_no_values_no_donors_no_buttons.php
+	campaign_no_values_no_hearts_no_buttons.php
+	campaign_no_values_no_hearts_no_donors.php
+	campaign_no_values_no_hearts_no_donors_no_buttons.php	
+	campaign_single.php
+	campaign_single_no_buttons.php
+	campaign_single_no_donors.php
+	campaign_single_no_hearts.php
+	campaign_single_no_donors_no_buttons.php
+	campaign_single_no_hearts_no_buttons.php
+	campaign_single_no_hearts_no_donors.php
+	campaign_single_no_hearts_no_donors_no_buttons.php
 
 CHANGES
  
 	IN FILES: 
 	
-		\network-site\addons\default\modules\network_settings\css\fundraising.css
+		fundraising.css
 	
 			ADDED CODE: 
 			
@@ -57,7 +50,7 @@ CHANGES
 					border: solid 2px #f5f5f5;
 				}
 	
-		\network-site\addons\default\themes\toucantechV2\css\supportus.css
+		supportus.css
 		
 			ADDED CODE: 
 			
@@ -69,7 +62,7 @@ CHANGES
 
 				
 
-		\network-site\addons\default\modules\fundraising\controllers\fundraising.php
+		fundraising.php
 	
 			ADDED CODE inside function supportus
 			
@@ -84,7 +77,7 @@ CHANGES
 				.....
 				
 	
-		\network-site\addons\default\modules\fundraising\views\supportus.php
+		supportus.php
 	
 			CHANGED CODE: 
 			
@@ -96,7 +89,7 @@ CHANGES
 				II. TO: <?php $this->load->view('partials/campaign_single' . $campaign->view_file_name, array('campaign' => $campaign))?>
 
 	
-		\network-site\addons\default\modules\network_settings\views\fundraising\campaigns\edit.php
+		edit.php
 		
 			ADDED CODE:
 				
@@ -137,7 +130,7 @@ CHANGES
 			
 			
 			
-		\network-site\addons\default\modules\network_settings\js\fundraising.js
+		fundraising.js
 
 			ADDED CODE: new controll part 
 			
@@ -189,7 +182,7 @@ CHANGES
 				} //END Easy control for buttons to toggle "Hearts", "Donate Buttons" and "Donors list"
 				
 	
-		\network-site\addons\default\modules\network_settings\controllers\fundraising.php
+		fundraising.php
 		
 			ADDED CODE 
 			
@@ -263,7 +256,7 @@ CHANGES
 					
 				
 	
-		\network-site\addons\default\modules\network_settings\details.php
+		details.php
 		
 			ADDED CODE: 
 				
@@ -280,3 +273,4 @@ CHANGES
 								->delete($this->db->dbprefix('settings'));
 				}
 				
+
